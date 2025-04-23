@@ -39,7 +39,7 @@ To set up this environment on a new machine:
    chezmoi apply
    ```
 
-   > 🔧 The `chezmoi apply` command applies all the dotfiles from the repository and sets up your shell environment, installs Homebrew packages, applies VSCode extensions, and configures system defaults. It’s the one-stop bootstrap script for your setup.
+   > 🔧 The `chezmoi apply` command applies all the dotfiles from the repository, sets up your shell environment, installs Homebrew packages, applies VSCode extensions, and configures system defaults. It’s the one-stop bootstrap script for your setup.
 
 ## 🔐 Sensitive Configs & 1Password Integration
 
