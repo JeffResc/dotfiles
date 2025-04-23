@@ -33,19 +33,13 @@ To set up this environment on a new machine:
    - `email` – used for git config
    - `class` – set to either `work` or `personal` to tailor the installation
 
-4. **Apply the configuration**
+4. **Apply the configuration and initialize shell environment**
 
    ```bash
    chezmoi apply
    ```
 
-5. **Initialize shell environment**
-
-   ```bash
-   source ~/.zshrc && bootstrap
-   ```
-
-   > 🔧 The `bootstrap` command sets up your shell environment, installs Homebrew packages, applies VSCode extensions, and configures system defaults. It’s the one-stop bootstrap script for your setup.
+   > 🔧 The `chezmoi apply` command applies all the dotfiles from the repository and sets up your shell environment, installs Homebrew packages, applies VSCode extensions, and configures system defaults. It’s the one-stop bootstrap script for your setup.
 
 ## 🔐 Sensitive Configs & 1Password Integration
 

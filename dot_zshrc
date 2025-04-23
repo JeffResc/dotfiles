@@ -24,7 +24,6 @@ alias ls='lsd'
 alias l='lsd'
 alias cd='z'
 alias cat='bat'
-alias bootstrap='$HOME/.local/bin/bootstrap.sh'
 alias kctx='kubie ctx'
 
 # kubecolor

@@ -1,0 +1,54 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --file=/dev/stdin <<EOF
+{{ range .common_packages.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .common_packages.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .common_packages.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range .common_packages.vscodes -}}
+vscode {{ . | quote }}
+{{ end -}}
+EOF
+
+{{- if eq .class "personal" }}
+brew bundle --file=/dev/stdin <<EOF
+{{ range .personal_packages.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .personal_packages.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .personal_packages.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range .personal_packages.vscodes -}}
+vscode {{ . | quote }}
+{{ end -}}
+EOF
+{{- end }}
+
+
+{{- if eq .class "work" }}
+brew bundle --file=/dev/stdin <<EOF
+{{ range .work_packages.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .work_packages.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .work_packages.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range .work_packages.vscodes -}}
+vscode {{ . | quote }}
+{{ end -}}
+EOF
+{{- end }}
+
+{{- end }}
