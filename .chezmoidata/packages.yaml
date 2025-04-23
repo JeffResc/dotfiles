@@ -71,7 +71,6 @@ work_packages:
     - 'jorgelbg/tap'
     - 'weaveworks/tap'
   brews:
-    - '1password-cli'
     - 'aws-vault'
     - 'awscli'
     - 'azure-cli'
@@ -86,8 +85,10 @@ work_packages:
     - 'jorgelbg/tap/pinentry-touchid'
     - 'opensc'
     - 'tofuenv'
+    - 'tmux'
     - 'weaveworks/tap/eksctl'
   casks:
+    - '1password-cli'
     - 'session-manager-plugin'
     - 'font-teko'
     - 'google-cloud-sdk'
