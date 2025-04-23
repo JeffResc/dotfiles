@@ -1,0 +1,10 @@
+{{- if eq .class "work" }}
+DefaultBrowser = "CHROME"
+CustomBrowserPath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+CustomSSOBrowserPath = ""
+Ordering = ""
+ExportCredentialSuffix = ""
+
+[Keyring]
+  Backend = "keychain"
+{{- end }}
