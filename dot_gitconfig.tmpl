@@ -1,0 +1,20 @@
+[user]
+        name = Jeff Rescignano
+        email = {{ .email | quote }}
+        {{- if eq .class "work" }}
+        signingkey = 5D7B8D8A633D9D3D
+        {{ end }}
+
+{{- if eq .class "work" }}
+[commit]
+        gpgsign = true
+{{ end }}
+{{- if eq .class "personal" }}
+[credential]
+        helper = store
+[filter "lfs"]
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+{{ end }}
