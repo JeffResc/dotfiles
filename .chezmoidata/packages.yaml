@@ -68,6 +68,7 @@ work_packages:
     - 'chainguard-dev/tap'
     - 'common-fate/granted'
     - 'defenseunicorns/tap'
+    - 'hashicorp/tap'
     - 'jorgelbg/tap'
     - 'weaveworks/tap'
   brews:
@@ -82,6 +83,7 @@ work_packages:
     - 'defenseunicorns/tap/lula'
     - 'defenseunicorns/tap/uds'
     - 'defenseunicorns/tap/zarf'
+    - 'hashicorp/tap/packer'
     - 'jorgelbg/tap/pinentry-touchid'
     - 'opensc'
     - 'tofuenv'
