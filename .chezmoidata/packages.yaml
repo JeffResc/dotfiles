@@ -86,6 +86,7 @@ work_packages:
     - 'hashicorp/tap/packer'
     - 'jorgelbg/tap/pinentry-touchid'
     - 'opensc'
+    - 'terraform-docs'
     - 'tofuenv'
     - 'tmux'
     - 'weaveworks/tap/eksctl'
