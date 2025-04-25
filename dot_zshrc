@@ -49,5 +49,8 @@ zstyle ':completion:*' menu select
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 [ -f ~/.uds_aliases ] && source ~/.uds_aliases
 
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
