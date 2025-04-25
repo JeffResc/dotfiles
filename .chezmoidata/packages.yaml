@@ -18,6 +18,7 @@ common_packages:
     - 'jq'
     - 'k3d'
     - 'k9s'
+    - 'krew'
     - 'kubecolor'
     - 'kubectx'
     - 'kubernetes-cli'
