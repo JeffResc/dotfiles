@@ -28,7 +28,6 @@ alias kctx='kubie ctx'
 
 # kubecolor
 alias kubectl='kubecolor'
-compdef kubecolor=kubectl
 
 # kube editor
 export KUBE_EDITOR="$HOME/.local/bin/kube-edit.sh"
