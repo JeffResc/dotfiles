@@ -22,12 +22,12 @@ export GPG_TTY=$(tty)
 # aliases
 alias ls='lsd'
 alias l='lsd'
-alias cd='z'
 alias cat='bat'
 alias kctx='kubie ctx'
 
 # kubecolor
 alias kubectl='kubecolor'
+compdef kubecolor=kubectl
 
 # kube editor
 export KUBE_EDITOR="$HOME/.local/bin/kube-edit.sh"
@@ -36,7 +36,9 @@ export KUBE_EDITOR="$HOME/.local/bin/kube-edit.sh"
 source <(fzf --zsh)
 
 # zoxide
-eval "$(zoxide init zsh)"
+if [ -z "$DISABLE_ZOXIDE" ]; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
 
 # p10k
 source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
