@@ -8,6 +8,14 @@ fi
 # homebrew stuff
 export HOMEBREW_PREFIX="/opt/homebrew"
 
+# Ensure Homebrew completions are in fpath
+if [[ -d "/opt/homebrew/share/zsh/site-functions" ]]; then
+    fpath=("/opt/homebrew/share/zsh/site-functions" $fpath)
+fi
+
+# Initialize completion system
+autoload -Uz compinit && compinit
+
 # go, brew paths
 export PATH="$HOME/go/bin:$HOMEBREW_PREFIX/bin:$PATH"
 
