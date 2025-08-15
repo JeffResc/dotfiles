@@ -10,7 +10,6 @@ common_packages:
     - 'fzf'
     - 'gh'
     - 'git'
-    - 'gnupg'
     - 'go'
     - 'helm'
     - 'htop'

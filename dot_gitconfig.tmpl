@@ -1,20 +1,34 @@
 [user]
-        name = Jeff Rescignano
-        email = {{ .email | quote }}
-        {{- if eq .class "work" }}
-        signingkey = 5D7B8D8A633D9D3D
-        {{ end }}
+  name = Jeff Rescignano
+  email = {{ .email | quote }}
+  {{- if eq .class "work" }}
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMhMqkkJzMyUxdoKRMMeJ8uk1YhukiWst1TJy75sleRC
+  {{ end }}
 
 {{- if eq .class "work" }}
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [commit]
-        gpgsign = true
+  gpgsign = true
 {{ end }}
+
 {{- if eq .class "personal" }}
 [credential]
-        helper = store
+  helper = store
+
 [filter "lfs"]
-        required = true
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
 {{ end }}
+
+[init]
+  defaultBranch = main
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
