@@ -1,11 +1,13 @@
 [user]
   name = Jeff Rescignano
   email = {{ .email | quote }}
+  {{- if eq .class "personal" }}
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPd7YTi+a7/xbOv53XhAa9qImiq3Yv3z8jOzInv9q41a
+  {{ end }}
   {{- if eq .class "work" }}
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMhMqkkJzMyUxdoKRMMeJ8uk1YhukiWst1TJy75sleRC
   {{ end }}
-
-{{- if eq .class "work" }}
+  
 [gpg]
   format = ssh
 
@@ -14,7 +16,6 @@
 
 [commit]
   gpgsign = true
-{{ end }}
 
 {{- if eq .class "personal" }}
 [credential]
