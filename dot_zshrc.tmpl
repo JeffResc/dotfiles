@@ -58,5 +58,10 @@ zstyle ':completion:*' menu select
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+{{- if eq .class "personal" }}
+export KUBECONFIG=~/.kube/talos_config
+export TALOSCONFIG=~/.talos/talos_config
+{{ end }}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
