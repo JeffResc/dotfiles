@@ -79,6 +79,7 @@ work_packages:
     - 'colima'
     - 'common-fate/granted/granted'
     - 'crane'
+    - 'd2'
     - 'defenseunicorns/tap/lula'
     - 'defenseunicorns/tap/uds'
     - 'defenseunicorns/tap/zarf'
