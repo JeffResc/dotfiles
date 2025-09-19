@@ -1,0 +1,5 @@
+font-family = "FiraCode Nerd Font Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace
+keybind = global:cmd+backquote=toggle_quick_terminal
+theme = Abernathy
+macos-icon = holographic
+quick-terminal-position = bottom
