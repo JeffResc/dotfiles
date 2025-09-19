@@ -41,6 +41,7 @@ common_packages:
     - 'bentobox'
     - 'font-fira-code-nerd-font'
     - 'hyper'
+    - 'ghostty'
   vscodes:
     - 'docker.docker'
     - 'eamodio.gitlens'
