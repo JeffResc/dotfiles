@@ -17,7 +17,11 @@ fi
 autoload -Uz compinit && compinit
 
 # go, brew paths
-export PATH="$HOME/.local/bin:$HOME/go/bin:$(brew --prefix rustup)/bin:$HOME/.cargo/bin:$HOMEBREW_PREFIX/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$(brew --prefix rustup)/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # nvm config
 export NVM_DIR="$HOME/.nvm"
