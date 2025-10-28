@@ -44,6 +44,9 @@ export KUBE_EDITOR="$HOME/.local/bin/kube-edit.sh"
 # fzf
 source <(fzf --zsh)
 
+# azure-select
+source $HOME/.azure-select.sh
+
 # zoxide
 if [ -z "$DISABLE_ZOXIDE" ]; then
   eval "$(zoxide init --cmd cd zsh)"
