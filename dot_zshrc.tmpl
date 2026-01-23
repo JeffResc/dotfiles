@@ -74,4 +74,4 @@ export TALOSCONFIG=~/.talos/talos_config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # 1Password Account
-export OP_ACCOUNT=$(op account ls --format=json | jq -r '.[0].user_uuid')
+alias op_account="export OP_ACCOUNT=$(op account ls --format=json | jq -r '.[0].account_uuid')"
