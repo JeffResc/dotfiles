@@ -80,3 +80,6 @@ export TALOSCONFIG=~/.talos/talos_config
 
 # 1Password Account
 alias op_account="export OP_ACCOUNT=$(op account ls --format=json | jq -r '.[0].account_uuid')"
+
+# Do Not Track
+export DO_NOT_TRACK=1
