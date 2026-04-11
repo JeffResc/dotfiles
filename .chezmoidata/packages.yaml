@@ -200,7 +200,6 @@ personal_packages:
     - 'vsce'
     - 'wireshark'
     - 'yadm'
-    - 'yamllint'
     - 'youtube-dl'
     - 'yt-dlp'
   casks:

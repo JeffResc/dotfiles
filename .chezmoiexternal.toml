@@ -1,0 +1,4 @@
+[".kubectl_aliases"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases"
+    refreshPeriod = "168h"
