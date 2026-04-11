@@ -73,7 +73,6 @@ common_packages:
     - 'font-fira-code-nerd-font'
     - 'gcloud-cli'
     - 'ghostty'
-    - 'google-cloud-sdk'
     - 'hyper'
     - 'orbstack'
   vscodes:
