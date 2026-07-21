@@ -1,0 +1,48 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+command_timeout = 500
+continuation_prompt = "... "
+
+format = "$directory$git_branch$git_status$character"
+right_format = "$cmd_duration$jobs$sudo"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+read_only = " read-only"
+
+[git_branch]
+symbol = ""
+format = "[$branch]($style) "
+style = "bold purple"
+
+[git_status]
+format = "[$all_status]($style) "
+style = "bold yellow"
+conflicted = "C "
+untracked = "? "
+stashed = "stash "
+modified = "M "
+staged = "S "
+renamed = "R "
+deleted = "D "
+ignore_submodules = true
+
+[cmd_duration]
+min_time = 3000
+format = "[took $duration](yellow) "
+
+[jobs]
+symbol = "jobs:"
+format = "[$symbol$number]($style) "
+
+[sudo]
+disabled = false
+symbol = ""
+format = "[sudo]($style) "
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
