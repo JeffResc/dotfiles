@@ -13,7 +13,6 @@ in
       "opa"
       "opensc"
       "terramaid"
-      "yara"
     ];
     casks = [
       "font-teko"
@@ -30,13 +29,11 @@ in
       inetutils
       k0sctl
       minio-client
-      pipx
       step-cli
-      tmux
-      tree
-      upx
 
       duPkgs.chainctl
+      duPkgs.uds-cli
+      duPkgs.zarf
     ];
 
     home.file.".azure/config".text = ''

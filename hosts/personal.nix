@@ -2,34 +2,69 @@
 {
   homebrew = {
     taps = [
-      "jeffreywildman/virt-manager"
-      "robusta-dev/krr"
-      "supabase/tap"
       "tw93/tap"
     ];
     brews = [
-      "jeffreywildman/virt-manager/virt-viewer"
-      "oauth2l"
-      "openapi-generator"
-      "robusta-dev/krr/krr"
-      "rtl_433"
-      "supabase/tap/supabase"
       "tw93/tap/mole"
-      "virt-manager"
-      "wireshark"
     ];
     casks = [
+      "balenaetcher"
+      "bambu-studio"
       "basictex"
+      "betterdisplay"
+      "claude"
+      "coolterm"
+      "elgato-stream-deck"
+      "gcloud-cli"
       "ha-menu"
-      "kap"
+      "imazing-profile-editor"
+      "logi-options+"
       "mitmproxy"
+      "mullvad-vpn"
+      "notion"
+      "obs"
+      "obsidian"
+      "ollama-app"
       "openscad"
+      "openvpn-connect"
       "orbstack"
+      "qflipper"
+      "qmk-toolbox"
+      "raspberry-pi-imager"
+      "raycast"
+      "rustdesk"
       "session-manager-plugin"
+      "slack"
+      "spotify"
+      "steam"
+      "unnaturalscrollwheels"
       "visual-studio-code"
-      "wireshark"
+      "vlc"
+      "wifiman"
+      "winbox"
     ];
+    masApps = {
+      "Apple Configurator" = 1037126344;
+      "iMazing Profile Editor" = 1487860882;
+      "MQTT Explorer" = 1455214828;
+      "Tailscale" = 1475387142;
+      "The Unarchiver" = 425424353;
+      "Yubico Authenticator" = 1497506650;
+    };
   };
+
+  # Apps intentionally installed manually (not tracked here):
+  #   SDR++                              - no Homebrew cask exists
+  #   Helium                             - vendor install, not in App Store
+  #   CalDigit Docking Station Utility   - vendor installer
+  #   Autodesk Fusion (+ Service Utility) - Autodesk installer
+  #   Games (Steam library, Jackbox Party Packs, KSP, Cities Skylines) - Steam / installer
+  #   Python 3.11                        - system installer (use nix + uv instead)
+  #   Mitmproxy Redirector               - bundled by the mitmproxy cask
+  #   Claude Code URL Handler            - bundled by the claude-code cask
+  #   CHIRP                              - cask URL 403s (archive.chirpmyradio.com); reinstall via cask when upstream fixed
+  #   VNC Viewer                         - cask URL 404s (RealVNC moved download); reinstall via cask when upstream updates
+  #   Remote Desktop Manager             - cask install chmod-fails on SIP-protected framework files; install manually from devolutions.net
 
   home-manager.users.${username} = {
     home.packages = with pkgs; [
@@ -46,13 +81,11 @@
       delve
       dfu-util
       dnsutils
-      fluxcd
-      gnu-tar
+      gnutar
       hubble
       iperf3
       k8sgpt
       kopia
-      kubebuilder
       kubeconform
       kubeseal
       libpq
@@ -63,12 +96,12 @@
       openocd
       poppler
       pv
+      rtl_433
       rustup
       socat
       sops
       talosctl
       velero
-      virtctl
       vsce
       yt-dlp
     ];

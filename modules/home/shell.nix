@@ -11,6 +11,10 @@
       kubectl = "kubecolor";
       watch = "viddy";
       assume = ". assume";
+      nh-pull = "git -C ~/.config/nix-darwin pull";
+      nh-up = "git -C ~/.config/nix-darwin pull && nh darwin switch";
+      nh-flake = "nix flake update --flake ~/.config/nix-darwin";
+      nh-flake-up = "nix flake update --flake ~/.config/nix-darwin && nh darwin switch";
     };
     initContent = lib.mkMerge [
       (lib.mkOrder 100 ''

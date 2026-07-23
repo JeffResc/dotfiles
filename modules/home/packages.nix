@@ -1,21 +1,28 @@
-{ pkgs, du-packages, ... }:
-let
-  duPkgs = du-packages.packages.${pkgs.stdenv.hostPlatform.system};
-in
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
-    bfg-repo-cleaner
+    apko
+    atmos
     dive
     docker-client
     docker-compose
     dust
     fd
     fnm
+    grype
+    ipmitool
+    melange
+    mtr
+    openssh
     p7zip
     pre-commit
     rsync
     shellcheck
+    syft
+    trivy
+    uv
     viddy
+    wget
     yamllint
     yq-go
 
@@ -38,13 +45,9 @@ in
     kubernetes-helm
     opentofu
     oras
-    scorecard
     skopeo
     stern
     terraform-docs
     tflint
-
-    duPkgs.uds-cli
-    duPkgs.zarf
   ];
 }

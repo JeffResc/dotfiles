@@ -1,5 +1,13 @@
-{ ... }:
+{ config, ... }:
 {
+  system.activationScripts.preActivation.text = ''
+    if [ -x /opt/homebrew/bin/brew ]; then
+      for tap in $(sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew tap 2>/dev/null); do
+        sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew trust "$tap" >/dev/null 2>&1 || true
+      done
+    fi
+  '';
+
   homebrew = {
     enable = true;
     onActivation = {
@@ -15,16 +23,8 @@
 
     brews = [
       "ansible"
-      "apko"
-      "atmos"
-      "checkov"
-      "grype"
       "mas"
-      "melange"
       "pinentry-mac"
-      "syft"
-      "trivy"
-      "uv"
     ];
 
     casks = [
@@ -34,7 +34,6 @@
       "codex"
       "font-fira-code-nerd-font"
       "ghostty"
-      "qdirstat"
     ];
 
     masApps = {

@@ -1,4 +1,4 @@
-{ username, pkgs, ... }:
+{ class, username, pkgs, ... }:
 {
   imports = [
     ./homebrew.nix
@@ -6,17 +6,20 @@
   ];
 
   nix = {
+    # Determinate Nix (used on personal) manages its own daemon and
+    # rejects nix-darwin's native nix management.
+    enable = class != "personal";
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ username ];
       warn-dirty = false;
     };
     gc = {
-      automatic = true;
+      automatic = class != "personal";
       interval = { Weekday = 7; Hour = 3; Minute = 0; };
       options = "--delete-older-than 30d";
     };
-    optimise.automatic = true;
+    optimise.automatic = class != "personal";
     extraOptions = ''
       !include /etc/nix/access-tokens.conf
     '';
