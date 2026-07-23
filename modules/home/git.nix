@@ -1,4 +1,4 @@
-{ class, userEmail, signingKey, lib, ... }:
+{ class, pkgs, userEmail, signingKey, lib, ... }:
 {
   programs.git = {
     enable = true;
@@ -15,10 +15,10 @@
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       init.defaultBranch = "main";
       credential."https://github.com" = {
-        helper = [ "" "!/opt/homebrew/bin/gh auth git-credential" ];
+        helper = [ "" "!${pkgs.gh}/bin/gh auth git-credential" ];
       };
       credential."https://gist.github.com" = {
-        helper = [ "" "!/opt/homebrew/bin/gh auth git-credential" ];
+        helper = [ "" "!${pkgs.gh}/bin/gh auth git-credential" ];
       };
     } // lib.optionalAttrs (class == "personal") {
       credential.helper = "store";

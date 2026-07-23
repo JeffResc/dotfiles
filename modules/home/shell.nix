@@ -13,8 +13,8 @@
       assume = ". assume";
       nh-pull = "git -C ~/.config/nix-darwin pull";
       nh-up = "git -C ~/.config/nix-darwin pull && nh darwin switch";
-      nh-flake = "nix flake update --flake ~/.config/nix-darwin";
-      nh-flake-up = "nix flake update --flake ~/.config/nix-darwin && nh darwin switch";
+      nh-flake = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin";
+      nh-flake-up = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin && nh darwin switch";
     };
     initContent = lib.mkMerge [
       (lib.mkOrder 100 ''
@@ -30,6 +30,43 @@
         source "$HOME/.azure-select.sh"
 
         alias op_account='export OP_ACCOUNT=$(op account ls --format=json | jq -r ".[0].account_uuid")'
+
+        nh-bump() {
+          local repo="$HOME/.config/nix-darwin"
+          local stashed=0
+          local stamp
+          stamp=$(date +%Y-%m-%d)
+
+          if ! git -C "$repo" diff --quiet HEAD 2>/dev/null; then
+            echo "→ stashing dirty changes"
+            git -C "$repo" stash push -u -m "nh-bump auto-stash $stamp" || return 1
+            stashed=1
+          fi
+
+          echo "→ updating flake inputs"
+          if ! nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake "$repo"; then
+            [ $stashed -eq 1 ] && git -C "$repo" stash pop
+            return 1
+          fi
+
+          if git -C "$repo" diff --quiet HEAD -- flake.lock; then
+            echo "→ no flake.lock changes"
+          else
+            echo "→ committing"
+            git -C "$repo" add flake.lock
+            git -C "$repo" commit -m "chore: flake update $stamp" || {
+              [ $stashed -eq 1 ] && git -C "$repo" stash pop
+              return 1
+            }
+            echo "→ pushing"
+            git -C "$repo" push || echo "  push failed (commit is local)"
+          fi
+
+          if [ $stashed -eq 1 ]; then
+            echo "→ restoring stash"
+            git -C "$repo" stash pop || echo "  stash pop had conflicts, resolve manually"
+          fi
+        }
       '')
       (lib.mkOrder 1500 ''
         compdef kubecolor=kubectl
