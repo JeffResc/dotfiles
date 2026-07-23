@@ -1,0 +1,107 @@
+{
+  "nodes": {
+    "du-packages": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784558079,
+        "narHash": "sha256-I/9AE5E75T0+YriGvCMGxYJjR2ozU9sgCZEiD1j1/fc=",
+        "owner": "defenseunicorns-labs",
+        "repo": "nix-packages",
+        "rev": "1780c7b02ee4ce52dbd02eb4a566e1d7b11af8c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "defenseunicorns-labs",
+        "repo": "nix-packages",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784725727,
+        "narHash": "sha256-J5+C9wsO0lhDyUalQzfplDbRjyHDYeEH5+9sdyXtwa8=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "041a999e8c1c5b731913855909e68d30ca69b8e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "kubectl-aliases": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746983085,
+        "narHash": "sha256-NkprSk55aRVHiq9JXduQl6AGZv5pBLHznRToOdm9OUw=",
+        "owner": "ahmetb",
+        "repo": "kubectl-aliases",
+        "rev": "7549fa45bbde7499b927c74cae13bfb9169c9497",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ahmetb",
+        "repo": "kubectl-aliases",
+        "type": "github"
+      }
+    },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784500460,
+        "narHash": "sha256-UvORnAxTRHax7RG74W8Z2t4GvIkX6AjJ5kk0QlwZomo=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "57a3171f94705599a2499248ca5758d5eb47c0e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1784555310,
+        "narHash": "sha256-/FCliTPgiuV1owejZFNx3Ch9irdvkOfOFl+HHZ+DrtM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "421eebfd0ec7bccd4abe826ce62d7e6e83129493",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "du-packages": "du-packages",
+        "home-manager": "home-manager",
+        "kubectl-aliases": "kubectl-aliases",
+        "nix-darwin": "nix-darwin",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

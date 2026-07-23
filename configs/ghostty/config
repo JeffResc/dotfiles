@@ -1,6 +1,5 @@
 font-family = "FiraCode Nerd Font Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace
 theme = Aura
-macos-icon = holographic
 
 # Splits
 split-inherit-working-directory = true

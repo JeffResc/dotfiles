@@ -1,67 +1,42 @@
-# Dotfiles Managed by chezmoi
+# Dotfiles
 
-This repository contains my personal dotfiles, managed using [chezmoi](https://www.chezmoi.io/) to ensure a consistent and secure developer environment across machines.
+nix-darwin + home-manager configuration for macOS on Apple Silicon.
 
-**Target platform:** macOS on Apple Silicon (ARM64) only.
+**Homebrew** manages all packages declaratively through nix-darwin's homebrew module. **home-manager** manages dotfiles. **nix-darwin** manages macOS system defaults and nix settings.
 
 ## Getting Started
 
-To set up this environment on a new machine:
-
-1. **Install chezmoi and initialize in one step**
+1. **Install Nix**
 
    ```bash
-   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply JeffResc/dotfiles
+   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh
    ```
 
-   Or if chezmoi is already installed:
+2. **Install Homebrew**
 
    ```bash
-   chezmoi init https://github.com/JeffResc/dotfiles
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
-2. **Configure personal values**
-
-   chezmoi will prompt for the following during `init`:
-
-   | Variable | Description | Values |
-   |----------|-------------|--------|
-   | `email` | Git commit email address | Your email |
-   | `class` | Environment profile | `work` or `personal` |
-
-   These are stored in `~/.config/chezmoi/chezmoi.toml`. To change later:
+3. **Bootstrap nix-darwin**
 
    ```bash
-   chezmoi edit-config
+   nix run nix-darwin -- switch --flake github:JeffResc/dotfiles#work
    ```
 
-   Example `chezmoi.toml`:
+   Replace `work` with `personal` for a personal machine.
 
-   ```toml
-   [data]
-       email = "you@example.com"
-       class = "personal"
-   ```
-
-3. **Authenticate 1Password CLI**
-
-   Several configs are pulled from 1Password at apply time. Sign in before applying:
+4. **Authenticate 1Password CLI**
 
    ```bash
    eval $(op signin)
    ```
 
-4. **Apply the configuration**
+   Then re-run to fetch secrets:
 
    ```bash
-   chezmoi apply
+   nh darwin switch
    ```
-
-   This will:
-   - Deploy all dotfiles to your home directory
-   - Install Homebrew packages (common + class-specific)
-   - Install VSCode extensions
-   - Fetch secrets from 1Password for class-specific configs
 
 ## Environment Classes
 
@@ -71,48 +46,27 @@ The `class` variable controls which tools and configurations are deployed:
 |------|-----------|--------|
 | Homebrew packages | Homelab tools (talosctl, flux, argocd, cilium, etc.) | Enterprise tools (chainctl, lula, eksctl, etc.) |
 | Git signing key | Personal Ed25519 key | Work Ed25519 key |
-| SSH config | 1Password agent + OrbStack | 1Password agent + OrbStack |
 | Cloud configs | Talos/Kubernetes from 1Password | AWS/Azure/Granted from 1Password |
-| Git credential helper | `gh auth git-credential` | `gh auth git-credential` |
+
+## Day-to-Day Usage
+
+```bash
+# Apply configuration changes
+nh darwin switch
+
+# Update flake inputs (nix, home-manager, etc.)
+nix flake update
+
+# Format nix files
+nix fmt
+```
 
 ## 1Password Integration
 
-Sensitive configs are never stored in this repo. They are fetched at `chezmoi apply` time using the `onepasswordRead` template function:
+Sensitive configs are fetched at activation time via the `op` CLI:
 
 | File | 1Password Reference | Class |
 |------|---------------------|-------|
 | `~/.aws/config` | `op://Employee/awsconfig` | work |
 | `~/.kube/talos_config` | `op://Homelab Tofu/talos-kubeconfig` | personal |
 | `~/.talos/talos_config` | `op://Homelab Tofu/talos-talosconfig` | personal |
-
-Ensure the relevant 1Password vaults are accessible before applying.
-
-## External Dependencies
-
-Some files are fetched from upstream sources rather than vendored in this repo (see `.chezmoiexternal.toml`):
-
-| File | Source | Refresh |
-|------|--------|---------|
-| `~/.kubectl_aliases` | [ahmetb/kubectl-aliases](https://github.com/ahmetb/kubectl-aliases) | Weekly |
-
-## Day-to-Day Usage
-
-```bash
-# See what would change
-chezmoi diff
-
-# Edit a managed file (opens in $EDITOR, applies on save)
-chezmoi edit ~/.zshrc
-
-# Pull latest dotfiles and apply
-chezmoi update
-
-# Add a new file to be managed
-chezmoi add ~/.some-config
-```
-
-## Tips
-
-- **1Password**: Must be authenticated (`op signin`) before applying secrets.
-- **Package changes**: Edit `.chezmoidata/packages.yaml` — the install script re-runs automatically when the file changes.
-- **Class switch**: Run `chezmoi edit-config`, change `class`, then `chezmoi apply`.
