@@ -67,7 +67,6 @@ in
     };
     brews = [
       "chainloop-cli"
-      "codex"
       "hashicorp/tap/packer"
       "lima-additional-guestagents"
       "opa"
@@ -75,6 +74,7 @@ in
       "terramaid"
     ];
     casks = [
+      "codex"
       "font-teko"
       "session-manager-plugin"
     ];
