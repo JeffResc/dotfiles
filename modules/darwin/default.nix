@@ -24,12 +24,10 @@
   system.activationScripts.nixAccessTokens.text = ''
     TOKEN=$(sudo -u ${username} --set-home /bin/sh -c '${pkgs.gh}/bin/gh auth token 2>/dev/null || true')
     if [ -n "$TOKEN" ]; then
-      echo "access-tokens = github.com=$TOKEN" > /etc/nix/access-tokens.conf
-      chmod 600 /etc/nix/access-tokens.conf
-      # Determinate's nix.conf only includes nix.custom.conf, so hook the
-      # token file in there (!include is a no-op if the file is missing).
-      if ! grep -q 'access-tokens.conf' /etc/nix/nix.custom.conf 2>/dev/null; then
-        echo '!include /etc/nix/access-tokens.conf' >> /etc/nix/nix.custom.conf
+      if grep -q '^access-tokens' /etc/nix/nix.custom.conf 2>/dev/null; then
+        sed -i '' 's|^access-tokens.*|access-tokens = github.com='"$TOKEN"'|' /etc/nix/nix.custom.conf
+      else
+        echo "access-tokens = github.com=$TOKEN" >> /etc/nix/nix.custom.conf
       fi
     fi
   '';
