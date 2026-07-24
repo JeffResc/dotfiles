@@ -7,6 +7,8 @@
   home.file = {
     ".dlv/config.yml".source = ../../configs/dlv/config.yml;
     ".claude/settings.json".source = ../../configs/claude/settings.json;
+    ".claude/CLAUDE.md".source = ../../configs/ai-instructions.md;
+    ".codex/AGENTS.md".source = ../../configs/ai-instructions.md;
     ".azure-select.sh".source = ../../configs/azure-select.sh;
     ".kubectl_aliases".source = "${kubectl-aliases}/.kubectl_aliases";
     ".local/bin/kube-edit.sh" = {

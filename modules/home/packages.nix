@@ -28,10 +28,13 @@
 
     awscli2
     azure-cli
+    air
     buf
     cosign
     crane
+    delve
     golangci-lint
+    gopls
     goreleaser
     granted
     grpcurl
@@ -45,9 +48,12 @@
     kubernetes-helm
     opentofu
     oras
+    mockery
     skopeo
+    staticcheck
     stern
     terraform-docs
     tflint
+    wire
   ];
 }

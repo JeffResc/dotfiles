@@ -31,7 +31,6 @@
       "1password-cli"
       "bentobox"
       "claude-code"
-      "codex"
       "font-fira-code-nerd-font"
       "ghostty"
     ];

@@ -13,6 +13,7 @@
       "basictex"
       "betterdisplay"
       "claude"
+      "codex"
       "coolterm"
       "elgato-stream-deck"
       "gcloud-cli"
@@ -78,7 +79,6 @@
       cmake
       coreutils
       croc
-      delve
       dfu-util
       dnsutils
       gnutar
