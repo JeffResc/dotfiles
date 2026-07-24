@@ -28,6 +28,10 @@
     };
     global.autoUpdate = false;
 
+    taps = [
+      "homebrew/bundle"
+    ];
+
     brews = [
       "ansible"
       "mas"
@@ -44,7 +48,6 @@
 
     masApps = {
       "WireGuard" = 1451685025;
-      "Windows App" = 1295203466;
     };
   };
 }
