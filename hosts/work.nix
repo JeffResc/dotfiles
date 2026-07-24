@@ -4,7 +4,7 @@ let
   selfServiceApps = [
     { path = "/Applications/1Password.app"; id = 107; name = "1Password 8"; entity = "app-installer"; }
     { path = "/Applications/Adobe Acrobat Reader.app"; id = 105; name = "Adobe Acrobat"; entity = "app-installer"; }
-    { path = "/Applications/Azure VPN Client.app"; id = 31; name = "Azure VPN"; entity = "app"; }
+
     { path = "/Applications/BetterDisplay.app"; id = 185; name = "BetterDisplay"; entity = "policy"; }
     { path = "/Applications/ChatGPT.app"; id = 88; name = "ChatGPT"; entity = "app-installer"; }
     { path = "/Applications/Claude.app"; id = 139; name = "Claude Desktop"; entity = "app-installer"; }
@@ -78,6 +78,7 @@ in
 
   homebrew = {
     masApps = {
+      "Azure VPN Client" = 1553936137;
       "Jamf Trust" = 1608041266;
       "Windows App" = 1295203466;
     };
