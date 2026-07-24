@@ -37,6 +37,22 @@ let
   '') selfServiceApps);
 in
 {
+  system.defaults.dock.persistent-apps = [
+    "/System/Applications/Apps.app"
+    "/System/Applications/App Store.app"
+    "/Applications/Google Chrome.app"
+    "/System/Applications/System Settings.app"
+    "/Applications/Slack.app"
+    "/Applications/Visual Studio Code.app"
+    "/Applications/Notion.app"
+    "/Applications/Gather.app"
+    "/Applications/Spotify.app"
+    "/Applications/Obsidian.app"
+    "/System/Applications/Home.app"
+    "/Applications/Claude.app"
+    "/Applications/Ghostty.app"
+    "/Applications/Signal.app"
+  ];
   system.activationScripts.postActivation.text = lib.mkAfter ''
     echo "Checking Jamf Self Service apps..." >&2
     ${selfServiceInstallScript}
