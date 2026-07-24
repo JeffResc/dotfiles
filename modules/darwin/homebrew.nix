@@ -1,12 +1,27 @@
-{ config, ... }:
+{ config
+, homebrew-core
+, homebrew-cask
+, homebrew-bundle
+, homebrew-defenseunicorns
+, homebrew-hashicorp
+, homebrew-jorgelbg
+, ...
+}:
 {
-  system.activationScripts.preActivation.text = ''
-    if [ -x /opt/homebrew/bin/brew ]; then
-      for tap in $(sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew tap 2>/dev/null); do
-        sudo -u ${config.system.primaryUser} /opt/homebrew/bin/brew trust "$tap" >/dev/null 2>&1 || true
-      done
-    fi
-  '';
+  nix-homebrew = {
+    enable = true;
+    user = config.system.primaryUser;
+    autoMigrate = true;
+    mutableTaps = false;
+    taps = {
+      "homebrew/core" = homebrew-core;
+      "homebrew/cask" = homebrew-cask;
+      "homebrew/bundle" = homebrew-bundle;
+      "defenseunicorns/tap" = homebrew-defenseunicorns;
+      "hashicorp/tap" = homebrew-hashicorp;
+      "jorgelbg/tap" = homebrew-jorgelbg;
+    };
+  };
 
   homebrew = {
     enable = true;
@@ -16,10 +31,6 @@
       cleanup = "uninstall";
     };
     global.autoUpdate = false;
-
-    taps = [
-      "defenseunicorns/tap"
-    ];
 
     brews = [
       "ansible"

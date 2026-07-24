@@ -19,17 +19,53 @@
       url = "github:defenseunicorns-labs/nix-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-defenseunicorns = {
+      url = "github:defenseunicorns/homebrew-tap";
+      flake = false;
+    };
+    homebrew-hashicorp = {
+      url = "github:hashicorp/homebrew-tap";
+      flake = false;
+    };
+    homebrew-jorgelbg = {
+      url = "github:jorgelbg/homebrew-tap";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, kubectl-aliases, du-packages, ... }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, kubectl-aliases, du-packages, nix-homebrew, ... }:
   let
     commonModules = [
       ./modules/darwin
       home-manager.darwinModules.home-manager
+      nix-homebrew.darwinModules.nix-homebrew
     ];
     mkDarwin = { class, username, userEmail, signingKey }: nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      specialArgs = { inherit class username userEmail signingKey kubectl-aliases du-packages; };
+      specialArgs = {
+        inherit class username userEmail signingKey kubectl-aliases du-packages;
+        inherit (inputs)
+          homebrew-core
+          homebrew-cask
+          homebrew-bundle
+          homebrew-defenseunicorns
+          homebrew-hashicorp
+          homebrew-jorgelbg
+          ;
+      };
       modules = commonModules ++ [
         ./hosts/${class}.nix
         {

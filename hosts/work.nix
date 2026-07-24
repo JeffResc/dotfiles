@@ -58,7 +58,6 @@ in
   '';
 
   homebrew = {
-    taps = [ "jorgelbg/tap" ];
     brews = [
       "chainloop-cli"
       "defenseunicorns/tap/lula"
