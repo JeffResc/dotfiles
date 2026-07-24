@@ -8,15 +8,19 @@
       "tw93/tap/mole"
     ];
     casks = [
+      "1password"
+      "autodesk-fusion"
       "balenaetcher"
       "bambu-studio"
       "basictex"
       "betterdisplay"
+      "caldigit-docking-utility"
       "claude"
       "codex"
       "coolterm"
       "elgato-stream-deck"
       "gcloud-cli"
+      "google-chrome"
       "ha-menu"
       "imazing-profile-editor"
       "logi-options+"
@@ -33,14 +37,15 @@
       "qmk-toolbox"
       "raspberry-pi-imager"
       "raycast"
+      "remote-desktop-manager"
       "rustdesk"
       "session-manager-plugin"
       "slack"
       "spotify"
       "steam"
-      "unnaturalscrollwheels"
       "visual-studio-code"
       "vlc"
+      "vnc-viewer"
       "wifiman"
       "winbox"
     ];
@@ -48,6 +53,7 @@
       "Apple Configurator" = 1037126344;
       "iMazing Profile Editor" = 1487860882;
       "MQTT Explorer" = 1455214828;
+      "Numbers" = 409203825;
       "Tailscale" = 1475387142;
       "The Unarchiver" = 425424353;
       "Yubico Authenticator" = 1497506650;
@@ -56,16 +62,12 @@
 
   # Apps intentionally installed manually (not tracked here):
   #   SDR++                              - no Homebrew cask exists
-  #   Helium                             - vendor install, not in App Store
-  #   CalDigit Docking Station Utility   - vendor installer
-  #   Autodesk Fusion (+ Service Utility) - Autodesk installer
+  #   Helium (helium.foss42.com browser) - not in Homebrew (existing `helium` cask is a different, deprecated app)
   #   Games (Steam library, Jackbox Party Packs, KSP, Cities Skylines) - Steam / installer
   #   Python 3.11                        - system installer (use nix + uv instead)
   #   Mitmproxy Redirector               - bundled by the mitmproxy cask
   #   Claude Code URL Handler            - bundled by the claude-code cask
-  #   CHIRP                              - cask URL 403s (archive.chirpmyradio.com); reinstall via cask when upstream fixed
-  #   VNC Viewer                         - cask URL 404s (RealVNC moved download); reinstall via cask when upstream updates
-  #   Remote Desktop Manager             - cask install chmod-fails on SIP-protected framework files; install manually from devolutions.net
+  #   CHIRP                              - cask disabled 2025-08-05 (Cloudflare blocks fetch); reinstall via cask when upstream restored
 
   home-manager.users.${username} = {
     home.packages = with pkgs; [

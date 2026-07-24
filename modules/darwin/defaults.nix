@@ -19,6 +19,7 @@
       mru-spaces = false;
       expose-group-apps = true;
       launchanim = false;
+      mineffect = "scale";
       minimize-to-application = true;
       wvous-tl-corner = 1;
       wvous-tr-corner = 1;
@@ -41,7 +42,15 @@
     WindowManager = {
       EnableTiledWindowMargins = false;
       EnableStandardClickToShowDesktop = false;
+      GloballyEnabled = false; # Stage Manager off
       HideDesktop = true;
+    };
+
+    menuExtraClock = {
+      Show24Hour = false;
+      ShowAMPM = true;
+      ShowDate = 0; # 0 = hide
+      ShowDayOfWeek = true;
     };
 
     screencapture = {
@@ -58,6 +67,7 @@
       NSGlobalDomain = {
         AppleMiniaturizeOnDoubleClick = false;
         "com.apple.trackpad.forceClick" = true;
+        "com.apple.swipescrolldirection" = false; # reversed scroll direction (trackpad + mouse)
       "com.apple.AdLib".allowApplePersonalizedAdvertising = false;
       "com.apple.desktopservices" = {
         DSDontWriteNetworkStores = true;
