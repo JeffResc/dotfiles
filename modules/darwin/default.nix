@@ -17,21 +17,17 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  system.activationScripts.postActivation.text = ''
-    sudo -u ${username} --set-home /bin/sh -c '/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u'
-  '';
-
-  system.activationScripts.nixAccessTokens.text = ''
+  system.activationScripts.extraActivation.text = ''
     TOKEN=$(sudo -u ${username} --set-home /bin/sh -c '${pkgs.gh}/bin/gh auth token 2>/dev/null || true')
     if [ -n "$TOKEN" ]; then
-      echo "access-tokens = github.com=$TOKEN" > /etc/nix/access-tokens.conf
-      chmod 600 /etc/nix/access-tokens.conf
-      # Determinate's nix.conf only includes nix.custom.conf, so hook the
-      # token file in there (!include is a no-op if the file is missing).
-      if ! grep -q 'access-tokens.conf' /etc/nix/nix.custom.conf 2>/dev/null; then
-        echo '!include /etc/nix/access-tokens.conf' >> /etc/nix/nix.custom.conf
-      fi
+      grep -v '^access-tokens' /etc/nix/nix.custom.conf > /etc/nix/nix.custom.conf.tmp 2>/dev/null || true
+      mv /etc/nix/nix.custom.conf.tmp /etc/nix/nix.custom.conf
+      echo "access-tokens = github.com=$TOKEN" >> /etc/nix/nix.custom.conf
     fi
+  '';
+
+  system.activationScripts.postActivation.text = ''
+    sudo -u ${username} --set-home /bin/sh -c '/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u'
   '';
 
   nixpkgs.hostPlatform = "aarch64-darwin";
