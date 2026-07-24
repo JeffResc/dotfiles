@@ -36,10 +36,6 @@
       url = "github:hashicorp/homebrew-tap";
       flake = false;
     };
-    homebrew-jorgelbg = {
-      url = "github:jorgelbg/homebrew-tap";
-      flake = false;
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, kubectl-aliases, du-packages, nix-homebrew, ... }:
@@ -58,7 +54,6 @@
           homebrew-cask
           homebrew-bundle
           homebrew-hashicorp
-          homebrew-jorgelbg
           ;
       };
       modules = commonModules ++ [

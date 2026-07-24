@@ -121,22 +121,6 @@
         "type": "github"
       }
     },
-    "homebrew-jorgelbg": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1659632777,
-        "narHash": "sha256-UYDGOSuC0myzp5jb03xCiqE+nMMMHIZ3eWiM83hVPKA=",
-        "owner": "jorgelbg",
-        "repo": "homebrew-tap",
-        "rev": "95c37690b5a0a97c290ccace9f35068e7a222da8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jorgelbg",
-        "repo": "homebrew-tap",
-        "type": "github"
-      }
-    },
     "kubectl-aliases": {
       "flake": false,
       "locked": {
@@ -215,7 +199,6 @@
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "homebrew-hashicorp": "homebrew-hashicorp",
-        "homebrew-jorgelbg": "homebrew-jorgelbg",
         "kubectl-aliases": "kubectl-aliases",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",

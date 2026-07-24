@@ -4,7 +4,6 @@
 , homebrew-bundle
 
 , homebrew-hashicorp
-, homebrew-jorgelbg
 , ...
 }:
 {
@@ -14,11 +13,10 @@
     autoMigrate = true;
     mutableTaps = false;
     taps = {
-      "homebrew/core" = homebrew-core;
-      "homebrew/cask" = homebrew-cask;
-      "homebrew/bundle" = homebrew-bundle;
-      "hashicorp/tap" = homebrew-hashicorp;
-      "jorgelbg/tap" = homebrew-jorgelbg;
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+      "homebrew/homebrew-bundle" = homebrew-bundle;
+      "hashicorp/homebrew-tap" = homebrew-hashicorp;
     };
   };
 
