@@ -30,7 +30,7 @@ let
   selfServiceInstallScript = builtins.concatStringsSep "\n" (map (app: ''
     if [ ! -e "${app.path}" ]; then
       echo "Installing ${app.name} via Jamf Self Service..."
-      open "selfservicecapability://content?action=execute&id=${toString app.id}&entity=policy"
+      sudo -u ${username} open "selfservicecapability://content?action=execute&id=${toString app.id}&entity=policy"
     fi
   '') selfServiceApps);
 in
