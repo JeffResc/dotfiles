@@ -68,11 +68,11 @@
         AppleMiniaturizeOnDoubleClick = false;
         "com.apple.trackpad.forceClick" = true;
         "com.apple.swipescrolldirection" = false; # reversed scroll direction (trackpad + mouse)
+      };
       "com.apple.AdLib".allowApplePersonalizedAdvertising = false;
       "com.apple.desktopservices" = {
         DSDontWriteNetworkStores = true;
         DSDontWriteUSBStores = true;
-      };
       };
     };
   };
