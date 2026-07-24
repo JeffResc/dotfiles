@@ -32,10 +32,6 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    homebrew-defenseunicorns = {
-      url = "github:defenseunicorns/homebrew-tap";
-      flake = false;
-    };
     homebrew-hashicorp = {
       url = "github:hashicorp/homebrew-tap";
       flake = false;
@@ -61,7 +57,6 @@
           homebrew-core
           homebrew-cask
           homebrew-bundle
-          homebrew-defenseunicorns
           homebrew-hashicorp
           homebrew-jorgelbg
           ;

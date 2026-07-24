@@ -105,22 +105,6 @@
         "type": "github"
       }
     },
-    "homebrew-defenseunicorns": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1784846967,
-        "narHash": "sha256-srwLS9FSNlSAP5y2NOWc8jkW4MRZrdt2nPLz0+U8wCo=",
-        "owner": "defenseunicorns",
-        "repo": "homebrew-tap",
-        "rev": "cbbdf62474d4c1acd083835d9bde79c013b01935",
-        "type": "github"
-      },
-      "original": {
-        "owner": "defenseunicorns",
-        "repo": "homebrew-tap",
-        "type": "github"
-      }
-    },
     "homebrew-hashicorp": {
       "flake": false,
       "locked": {
@@ -230,7 +214,6 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
-        "homebrew-defenseunicorns": "homebrew-defenseunicorns",
         "homebrew-hashicorp": "homebrew-hashicorp",
         "homebrew-jorgelbg": "homebrew-jorgelbg",
         "kubectl-aliases": "kubectl-aliases",

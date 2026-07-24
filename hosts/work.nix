@@ -60,7 +60,6 @@ in
   homebrew = {
     brews = [
       "chainloop-cli"
-      "defenseunicorns/tap/lula"
       "hashicorp/tap/packer"
       "lima-additional-guestagents"
       "opa"

@@ -2,7 +2,7 @@
 , homebrew-core
 , homebrew-cask
 , homebrew-bundle
-, homebrew-defenseunicorns
+
 , homebrew-hashicorp
 , homebrew-jorgelbg
 , ...
@@ -17,7 +17,6 @@
       "homebrew/core" = homebrew-core;
       "homebrew/cask" = homebrew-cask;
       "homebrew/bundle" = homebrew-bundle;
-      "defenseunicorns/tap" = homebrew-defenseunicorns;
       "hashicorp/tap" = homebrew-hashicorp;
       "jorgelbg/tap" = homebrew-jorgelbg;
     };
