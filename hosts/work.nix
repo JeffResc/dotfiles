@@ -27,10 +27,12 @@ let
     { path = "/Applications/Visual Studio Code.app"; id = 108; name = "VS Code"; }
     { path = "/Applications/Wireshark.app"; id = 118; name = "Wireshark"; }
   ];
+  uid = "$(id -u ${username})";
+  openAsUser = "launchctl asuser ${uid} open";
   selfServiceInstallScript = builtins.concatStringsSep "\n" (map (app: ''
     if [ ! -e "${app.path}" ]; then
       echo "Installing ${app.name} via Jamf Self Service..."
-      sudo -u ${username} open "selfservicecapability://content?action=execute&id=${toString app.id}&entity=policy"
+      ${openAsUser} "selfservicecapability://content?action=execute&id=${toString app.id}&entity=policy"
     fi
   '') selfServiceApps);
 in
@@ -41,19 +43,19 @@ in
     # DOD Root CAs - check system keychain
     if ! security find-certificate -c "DoD Root" /Library/Keychains/System.keychain >/dev/null 2>&1; then
       echo "Installing DOD Root CAs via Jamf Self Service..."
-      sudo -u ${username} open "selfservicecapability://content?action=execute&id=328&entity=policy"
+      ${openAsUser} "selfservicecapability://content?action=execute&id=328&entity=policy"
     fi
 
     # STIG Viewer - version number in app name
     if ! ls /Applications/STIG\ Viewer* >/dev/null 2>&1; then
       echo "Installing STIG Viewer via Jamf Self Service..."
-      sudo -u ${username} open "selfservicecapability://content?action=execute&id=152&entity=policy"
+      ${openAsUser} "selfservicecapability://content?action=execute&id=152&entity=policy"
     fi
 
     # OpenAI Codex - CLI tool
     if ! command -v codex >/dev/null 2>&1; then
       echo "Installing OpenAI Codex via Jamf Self Service..."
-      sudo -u ${username} open "selfservicecapability://content?action=execute&id=154&entity=policy"
+      ${openAsUser} "selfservicecapability://content?action=execute&id=154&entity=policy"
     fi
   '';
 
