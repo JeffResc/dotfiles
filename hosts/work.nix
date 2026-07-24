@@ -41,19 +41,19 @@ in
     # DOD Root CAs - check system keychain
     if ! security find-certificate -c "DoD Root" /Library/Keychains/System.keychain >/dev/null 2>&1; then
       echo "Installing DOD Root CAs via Jamf Self Service..."
-      open "selfservicecapability://content?action=execute&id=328&entity=policy"
+      sudo -u ${username} open "selfservicecapability://content?action=execute&id=328&entity=policy"
     fi
 
     # STIG Viewer - version number in app name
     if ! ls /Applications/STIG\ Viewer* >/dev/null 2>&1; then
       echo "Installing STIG Viewer via Jamf Self Service..."
-      open "selfservicecapability://content?action=execute&id=152&entity=policy"
+      sudo -u ${username} open "selfservicecapability://content?action=execute&id=152&entity=policy"
     fi
 
     # OpenAI Codex - CLI tool
     if ! command -v codex >/dev/null 2>&1; then
       echo "Installing OpenAI Codex via Jamf Self Service..."
-      open "selfservicecapability://content?action=execute&id=154&entity=policy"
+      sudo -u ${username} open "selfservicecapability://content?action=execute&id=154&entity=policy"
     fi
   '';
 
