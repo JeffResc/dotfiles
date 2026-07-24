@@ -12,6 +12,7 @@
       watch = "viddy";
       assume = ". assume";
       nh-pull = "git -C ~/.config/nix-darwin pull";
+      nh-switch = "nh darwin switch";
       nh-up = "git -C ~/.config/nix-darwin pull && nh darwin switch";
       nh-flake = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin";
       nh-flake-up = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin && nh darwin switch";
