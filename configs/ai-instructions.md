@@ -6,6 +6,14 @@
 - Don't remove or change code you can't explain — understand why it exists first.
 - Prefer editing existing files over creating new ones.
 
+## Verifying Assumptions
+
+- Verify every assumption before acting on it. Do not guess, infer, or rely on memory.
+- Ground answers in concrete truths backed by evidence — read the file, run the command, check the output, inspect the source.
+- Prefer primary evidence over recall: confirm APIs, flags, paths, versions, and behavior against the actual code, docs, or tooling rather than assuming.
+- When something cannot be verified from available evidence, stop and ask the user rather than assuming.
+- State what is confirmed versus unconfirmed. Do not present an assumption as fact.
+
 ## Git
 
 - Never run state-changing git commands (commit, push, merge, rebase, reset, etc.) unless the user explicitly asks.
