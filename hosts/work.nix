@@ -74,7 +74,7 @@ in
     ];
   };
 
-  home-manager.users.${username} = {
+  home-manager.users.${username} = { lib, ... }: {
     home.packages = with pkgs; [
       aws-iam-authenticator
       eksctl

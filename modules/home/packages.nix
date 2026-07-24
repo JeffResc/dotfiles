@@ -48,9 +48,9 @@
     kubernetes-helm
     opentofu
     oras
-    mockery
+    go-mockery
     skopeo
-    staticcheck
+    go-tools
     stern
     terraform-docs
     tflint
