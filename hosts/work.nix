@@ -53,9 +53,9 @@ in
       ${openAsUser} "selfservicecapability://content?action=execute&id=152&entity=policy"
     fi
 
-    # OpenAI Codex - CLI tool
-    if ! command -v codex >/dev/null 2>&1; then
-      echo "Installing OpenAI Codex via Jamf Self Service..."
+    # ChatGPT Desktop
+    if [ ! -e "/Applications/ChatGPT.app" ]; then
+      echo "Installing ChatGPT via Jamf Self Service..."
       ${openAsUser} "selfservicecapability://content?action=execute&id=154&entity=app-installer"
     fi
   '';
@@ -67,6 +67,7 @@ in
     };
     brews = [
       "chainloop-cli"
+      "codex"
       "hashicorp/tap/packer"
       "lima-additional-guestagents"
       "opa"
