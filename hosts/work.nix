@@ -62,6 +62,7 @@ in
 
   homebrew = {
     masApps = {
+      "Azure VPN Client" = 1553936137;
       "Jamf Trust" = 1608041266;
       "Windows App" = 1295203466;
     };
