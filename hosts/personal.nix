@@ -28,6 +28,7 @@
       "gcloud-cli"
       "google-chrome"
       "ha-menu"
+      "helium-browser"
       "imazing-profile-editor"
       "logi-options+"
       "mitmproxy"
@@ -66,14 +67,7 @@
 
   # Apps intentionally installed manually (not tracked here):
   #   SDR++                              - no Homebrew cask exists
-  #   Helium (helium.foss42.com browser) - not in Homebrew (existing `helium` cask is a different, deprecated app)
-  #   Autodesk Fusion (+ Service Utility) - cask runs an installer downloader, not a cask-style copy; install manually via Autodesk
-  #   Games (Steam library, Jackbox Party Packs, KSP, Cities Skylines) - Steam / installer
-  #   Python 3.11                        - system installer (use nix + uv instead)
-  #   Mitmproxy Redirector               - bundled by the mitmproxy cask
-  #   Claude Code URL Handler            - bundled by the claude-code cask
   #   CHIRP                              - cask disabled 2025-08-05 (Cloudflare blocks fetch); reinstall via cask when upstream restored
-  #   VNC Viewer                         - cask URL still 404s (RealVNC download moved); install manually from realvnc.com
 
   home-manager.users.${username} = {
     home.packages = with pkgs; [
