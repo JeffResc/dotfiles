@@ -1,5 +1,18 @@
 { username, pkgs, ... }:
 {
+  system.defaults.dock.persistent-apps = [
+    "/System/Applications/Apps.app"
+    "/Applications/Helium.app"
+    "/System/Applications/Messages.app"
+    "/System/Applications/Maps.app"
+    "/System/Applications/Mail.app"
+    "/System/Applications/App Store.app"
+    "/System/Applications/System Settings.app"
+    "/Applications/Ghostty.app"
+    "/Applications/Visual Studio Code.app"
+    "/Applications/Claude.app"
+  ];
+
   homebrew = {
     casks = [
       "1password"
