@@ -16,6 +16,7 @@
       nh-up = "git -C ~/.config/nix-darwin pull && nh darwin switch";
       nh-flake = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin";
       nh-flake-up = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin && nh darwin switch";
+      tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
     };
     initContent = lib.mkMerge [
       (lib.mkOrder 100 ''
