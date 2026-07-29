@@ -22,6 +22,18 @@
       (lib.mkOrder 100 ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
       '')
+      (lib.mkOrder 200 ''
+        brew() {
+          case "$1" in
+            install|reinstall|uninstall|upgrade|pin|unpin|link|unlink|cleanup|autoremove|tap|untap|bundle)
+              echo "Homebrew is managed by Nix; edit ~/.config/nix-darwin and run nh-switch." >&2
+              return 1
+              ;;
+          esac
+
+          command brew "$@"
+        }
+      '')
       (lib.mkOrder 550 ''
         export KUBE_EDITOR="$HOME/.local/bin/kube-edit.sh"
         export DO_NOT_TRACK=1
