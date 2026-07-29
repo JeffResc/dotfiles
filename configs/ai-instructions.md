@@ -25,6 +25,13 @@
 - Commits are signed via 1Password SSH agent — never bypass or reconfigure signing.
 - Never skip pre-commit hooks (`--no-verify`).
 
+## Pull Requests & Issues
+
+- Use `gh` to create PRs or issues only when the user explicitly requests it.
+- Follow the repo's templates (e.g., `.github/pull_request_template.md`, `.github/ISSUE_TEMPLATE/`) when available.
+- PR titles must follow conventional commit format.
+- Write descriptions in Simplified Technical English per [ASD-STE100](https://asd-ste100.org/): short sentences, active voice, approved words, no ambiguity.
+
 ## CLI Tool Preferences
 
 - Use `fd` instead of `find`.
@@ -32,7 +39,6 @@
 - Use `bat` instead of `cat` for file display.
 - Use `eza` instead of `ls`.
 - Use `dust` instead of `du`.
-- Use `btm` (bottom) instead of `top`/`htop`.
 - Use `jq` for JSON processing; `yq` for YAML.
 - Use `gh` for GitHub operations (PRs, issues, checks).
 - Use `uv` for Python project/package management, not pip.
