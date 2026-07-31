@@ -29,8 +29,8 @@
       "google-chrome"
       "ha-menu"
       "helium-browser"
-      "imazing-profile-editor"
       "logi-options+"
+      "lm-studio"
       "mitmproxy"
       "mullvad-vpn"
       "notion"
@@ -56,9 +56,7 @@
     ];
     masApps = {
       "Apple Configurator" = 1037126344;
-      "iMazing Profile Editor" = 1487860882;
       "MQTT Explorer" = 1455214828;
-      "Numbers" = 409203825;
       "Tailscale" = 1475387142;
       "The Unarchiver" = 425424353;
       "Yubico Authenticator" = 1497506650;
