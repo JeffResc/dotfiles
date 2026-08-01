@@ -2,6 +2,7 @@
 {
   imports = [
     ./packages.nix
+    ./net-info.nix
     ./dotfiles.nix
     ./shell.nix
     ./git.nix
