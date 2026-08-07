@@ -1,4 +1,5 @@
 {
+  config,
   class,
   lib,
   kubectl-aliases,
@@ -20,6 +21,20 @@
       source = ../../configs/kube-edit.sh;
       executable = true;
     };
+  };
+
+  # OpenTofu Cloudflare R2 state backend (homelab repo). R2 has no SSO/OIDC;
+  # the key is pulled from 1Password at runtime so nothing lands on disk.
+  home.file.".local/bin/r2-credential-process.sh" = lib.mkIf (class == "personal") {
+    source = ../../configs/aws/r2-credential-process.sh;
+    executable = true;
+  };
+  home.file.".aws/config" = lib.mkIf (class == "personal") {
+    text = ''
+      [profile homelab-tofu]
+      region = auto
+      credential_process = ${config.home.homeDirectory}/.local/bin/r2-credential-process.sh
+    '';
   };
 
   home.file.".ssh/config" = {
