@@ -1,4 +1,9 @@
-{ class, lib, kubectl-aliases, ... }:
+{
+  class,
+  lib,
+  kubectl-aliases,
+  ...
+}:
 {
   xdg.configFile = {
     "ghostty/config".source = ../../configs/ghostty/config;
@@ -19,6 +24,7 @@
 
   home.file.".ssh/config" = {
     text = ''
+      Include ~/.ssh/config.local
       ${lib.optionalString (class == "personal") "Include ~/.orbstack/ssh/config\n"}
       Host *
         IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
