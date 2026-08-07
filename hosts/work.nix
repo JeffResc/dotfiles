@@ -129,7 +129,11 @@ in
       name = AzureUSGovernment
     '';
 
-    home.file.".granted/config".text = ''
+    home.activation.grantedConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -f "$HOME/.granted/config" ] || [ -L "$HOME/.granted/config" ]; then
+        rm -f "$HOME/.granted/config"
+        mkdir -p "$HOME/.granted"
+        cat > "$HOME/.granted/config" << 'GRANTED'
       DefaultBrowser = "CHROME"
       CustomBrowserPath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
       CustomSSOBrowserPath = ""
@@ -138,6 +142,8 @@ in
 
       [Keyring]
         Backend = "keychain"
+      GRANTED
+      fi
     '';
   };
 }
