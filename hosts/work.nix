@@ -49,7 +49,7 @@ in
     "/Applications/Spotify.app"
     "/Applications/Obsidian.app"
     "/System/Applications/Home.app"
-    "/Applications/Claude.app"
+    "/Applications/ChatGPT.app"
     "/Applications/Ghostty.app"
     "/Applications/Signal.app"
   ];
