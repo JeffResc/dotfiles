@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-atmos.url = "github:NixOS/nixpkgs/104240a772428cc2e20d8fd86c9ddbb886bbaff2";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +39,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, kubectl-aliases, du-packages, nix-homebrew, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-atmos, nix-darwin, home-manager, kubectl-aliases, du-packages, nix-homebrew, ... }:
   let
     commonModules = [
       ./modules/darwin
@@ -59,6 +60,12 @@
       modules = commonModules ++ [
         ./hosts/${class}.nix
         {
+          nixpkgs.overlays = [
+            (final: prev: {
+              atmos = nixpkgs-atmos.legacyPackages.${prev.stdenv.hostPlatform.system}.atmos;
+            })
+          ];
+
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
