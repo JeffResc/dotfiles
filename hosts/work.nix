@@ -13,7 +13,6 @@ let
     { path = "/Applications/Gather.app"; id = 348; name = "Gather"; entity = "policy"; }
     { path = "/Applications/Google Chrome.app"; id = 124; name = "Google Chrome"; entity = "policy"; }
     { path = "/Applications/Linear.app"; id = 131; name = "Linear"; entity = "app-installer"; }
-    { path = "/Applications/logioptionsplus.app"; id = 311; name = "Logi Options+"; entity = "policy"; }
     { path = "/Applications/Microsoft Teams.app"; id = 55; name = "Teams"; entity = "app-installer"; }
     { path = "/Applications/Notion.app"; id = 44; name = "Notion"; entity = "app-installer"; }
     { path = "/Applications/Obsidian.app"; id = 29; name = "Obsidian"; entity = "app-installer"; }

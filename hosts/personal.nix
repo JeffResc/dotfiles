@@ -29,7 +29,6 @@
       "google-chrome"
       "ha-menu"
       "helium-browser"
-      "logi-options+"
       "lm-studio"
       "mitmproxy"
       "mullvad-vpn"

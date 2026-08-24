@@ -44,6 +44,7 @@
       "claude-code"
       "font-fira-code-nerd-font"
       "ghostty"
+      "openlogi"
     ];
 
     masApps = {
