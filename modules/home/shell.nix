@@ -14,8 +14,8 @@
       nh-pull = "git -C ~/.config/nix-darwin pull";
       nh-switch = "nh darwin switch";
       nh-up = "git -C ~/.config/nix-darwin pull && nh darwin switch";
-      nh-flake = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin";
-      nh-flake-up = "nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake ~/.config/nix-darwin && nh darwin switch";
+      nh-flake = "nix flake update --flake ~/.config/nix-darwin";
+      nh-flake-up = "nix flake update --flake ~/.config/nix-darwin && nh darwin switch";
       tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
     };
     initContent = lib.mkMerge [
@@ -58,7 +58,7 @@
           fi
 
           echo "→ updating flake inputs"
-          if ! nix flake update nixpkgs nix-darwin home-manager kubectl-aliases --flake "$repo"; then
+          if ! nix flake update --flake "$repo"; then
             [ $stashed -eq 1 ] && git -C "$repo" stash pop
             return 1
           fi
