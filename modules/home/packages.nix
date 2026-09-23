@@ -19,6 +19,7 @@
     rsync
     shellcheck
     syft
+    tmux
     trivy
     uv
     viddy
