@@ -85,6 +85,9 @@
       (lib.mkOrder 1500 ''
         compdef kubecolor=kubectl
       '')
+      (lib.mkOrder 1600 ''
+        path=("$HOME/.local/bin" $path)
+      '')
       (lib.mkIf (class == "personal") (lib.mkOrder 600 ''
         export KUBECONFIG=~/.kube/talos_config
         export TALOSCONFIG=~/.talos/talos_config

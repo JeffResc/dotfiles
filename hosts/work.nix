@@ -103,7 +103,6 @@ in
       gnupg
       inetutils
       k0sctl
-      minio-client
       step-cli
 
       duPkgs.chainctl

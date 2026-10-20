@@ -89,7 +89,6 @@
       kubeseal
       libpq
       meson
-      minio-client
       nmap
       ollama
       openocd

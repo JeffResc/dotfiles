@@ -3,16 +3,16 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1788591592,
-        "narHash": "sha256-NbwVKwKLFl0oXub7oPjvmDaOygCtV2oboeKTu4xXFTk=",
+        "lastModified": 1789661079,
+        "narHash": "sha256-geVTQ51PGZ1mLULM5k7wO7qt/6xenOR/YG8X7Q3eCaI=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "08e85c4e42f5d8f1ea17c36cb59cf61c2ccb26c3",
+        "rev": "edb70f031e4170c780799633a1226ff73e1077f4",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "6.0.22",
+        "ref": "7.0.4",
         "repo": "brew",
         "type": "github"
       }
@@ -21,14 +21,15 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "uds-image-factory-src": "uds-image-factory-src"
       },
       "locked": {
-        "lastModified": 1789412598,
-        "narHash": "sha256-6KimdXAZFxnLG+nqMdVCv/W7ZqCdKy9iHIbhCdQkuC8=",
+        "lastModified": 1792448924,
+        "narHash": "sha256-RV8xNCTZ2CZtx0Y5i/27Iff7MYLSIXKAIsSckBQEE9A=",
         "owner": "defenseunicorns-labs",
         "repo": "nix-packages",
-        "rev": "3eb0046a8ce3106e70158378717cce0179bb5326",
+        "rev": "4b89dd091d662e5441679d2fa3eebecfc6aeec7b",
         "type": "github"
       },
       "original": {
@@ -44,11 +45,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789482455,
-        "narHash": "sha256-pD3qVlQ4mUCFoTWrYtxecpSitQMsgJvJIN0FUIDZoEU=",
+        "lastModified": 1792438393,
+        "narHash": "sha256-C9hsBAUY/K7W7+CBSRdrT7XaX/ulVm3RuRBJNjmEM/A=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "efa3ccb4c3cc90d832eab232976379058fa75aa3",
+        "rev": "b74e23e34d3172802fdd60d4a1a01978f95e1898",
         "type": "github"
       },
       "original": {
@@ -76,11 +77,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1789502134,
-        "narHash": "sha256-4vnL0/r91Yf2jUv8r9/iu/3PAsMmToo/QvA+o7tTlP0=",
+        "lastModified": 1792451944,
+        "narHash": "sha256-wg8n6ZYC9s55ukan4e5Ue9s51MmHQQQn/PR+S/p7N0I=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "dcaf5c18e33cfe4044942f7e2a88d84dd38e3d73",
+        "rev": "02510dc04be32a7fcdbef29d8be98ccaa683dfa8",
         "type": "github"
       },
       "original": {
@@ -92,11 +93,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1789504927,
-        "narHash": "sha256-519aOD1kLhuOq05LPpaLxwpzfq9mMEkz9un+Lzr5AVE=",
+        "lastModified": 1792450130,
+        "narHash": "sha256-IUXw38lpILL8MgPVXrZ1akHOoCIU8NS4xvVX3GMPKjA=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "5086ab219255e0c10f14ab44c897daa63c0312ca",
+        "rev": "cced3ef1d489fce4eba453a333619722c3a8dd17",
         "type": "github"
       },
       "original": {
@@ -108,11 +109,11 @@
     "homebrew-hashicorp": {
       "flake": false,
       "locked": {
-        "lastModified": 1789487686,
-        "narHash": "sha256-TLGeVjfIqg/nS75z/I3PWkUFaBJu1oG9q++ZHTjxmLs=",
+        "lastModified": 1792089882,
+        "narHash": "sha256-jf7VQ6vgy6wv//pV1uPzUtI3VLavptK2SaTqCttlyDk=",
         "owner": "hashicorp",
         "repo": "homebrew-tap",
-        "rev": "9dbacb45d0af639f65c6f910eef657ead495d1a2",
+        "rev": "9d5821b38a05a5b9d632641ac20be29847db11b1",
         "type": "github"
       },
       "original": {
@@ -144,11 +145,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786845137,
-        "narHash": "sha256-oQFip+v0luP8NIxJzmiW4Wu8bILsbFWom5l0zonl8hQ=",
+        "lastModified": 1792366139,
+        "narHash": "sha256-jto4pdsl0bgErQ5vaMc3gOyj//PILLRJuqX3I7fUk6s=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "4cff07de74b50e64bdd68cd4e722ab5b6b35ee48",
+        "rev": "f0ec2b3fae4df92ea7788359aef9e07bb88d720f",
         "type": "github"
       },
       "original": {
@@ -162,11 +163,11 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1788981439,
-        "narHash": "sha256-fEaFq0XgpgWFPLfpq1UK4/8ylHd2T0+fo6O3hKz1LUM=",
+        "lastModified": 1789928041,
+        "narHash": "sha256-iV37ieTcE4ZLOYEe0VznW6dWMBe4lEL8AbK1vblyZGM=",
         "owner": "zhaofengli",
         "repo": "nix-homebrew",
-        "rev": "09a921d0181146cf6163ec2cc1db7b6fd539a885",
+        "rev": "c11cccfdd36dd69b5323d70d354b2853379c2426",
         "type": "github"
       },
       "original": {
@@ -177,11 +178,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1789370336,
-        "narHash": "sha256-6RSEDHIWQtesQKWSu5qRai8L2h4KgCgMEfJHstW99G4=",
+        "lastModified": 1792208399,
+        "narHash": "sha256-mN15cwddbOOIzzXSSwYUeRfOYeizz47Vy6y3Hzq6DuY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c7def046b9a883d46974757852106483d741586f",
+        "rev": "7a6522c868711d06e3a520bbcdfafe9806f4337f",
         "type": "github"
       },
       "original": {
@@ -191,19 +192,19 @@
         "type": "github"
       }
     },
-    "nixpkgs-atmos": {
+    "nixpkgs-azure-cli": {
       "locked": {
-        "lastModified": 1785747939,
-        "narHash": "sha256-D740uKsMbgsfK2oaDenJLLPIZfq7W0/g4KN/Fls8eKs=",
+        "lastModified": 1791336361,
+        "narHash": "sha256-o9ZUW4SlEAvFPIyJWnqChhOT/VHpHg8TAvEgmqK1fSI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "104240a772428cc2e20d8fd86c9ddbb886bbaff2",
+        "rev": "7dd199b0e2993e37b4775ed66b1c291699608c9f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "104240a772428cc2e20d8fd86c9ddbb886bbaff2",
+        "rev": "7dd199b0e2993e37b4775ed66b1c291699608c9f",
         "type": "github"
       }
     },
@@ -219,7 +220,24 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-atmos": "nixpkgs-atmos"
+        "nixpkgs-azure-cli": "nixpkgs-azure-cli"
+      }
+    },
+    "uds-image-factory-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791397380,
+        "narHash": "sha256-ovQLRpGQzU2gTBqcX49IVvMCZZz6W31hX7NqvkvBN9A=",
+        "ref": "refs/tags/uds-image-factory/v0.9.0",
+        "rev": "bab047fa0c85b4e5ff075a80dc4b7690616e83fd",
+        "revCount": 358,
+        "type": "git",
+        "url": "ssh://git@github.com/defenseunicorns/uds-image-factory"
+      },
+      "original": {
+        "ref": "refs/tags/uds-image-factory/v0.9.0",
+        "type": "git",
+        "url": "ssh://git@github.com/defenseunicorns/uds-image-factory"
       }
     }
   },

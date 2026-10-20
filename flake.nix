@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-atmos.url = "github:NixOS/nixpkgs/104240a772428cc2e20d8fd86c9ddbb886bbaff2";
+    # Fabric does not support Invoke 3 yet: https://github.com/fabric/fabric/issues/2376
+    nixpkgs-azure-cli.url = "github:NixOS/nixpkgs/7dd199b0e2993e37b4775ed66b1c291699608c9f";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +40,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-atmos, nix-darwin, home-manager, kubectl-aliases, du-packages, nix-homebrew, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-azure-cli, nix-darwin, home-manager, kubectl-aliases, du-packages, nix-homebrew, ... }:
   let
     commonModules = [
       ./modules/darwin
@@ -62,7 +63,7 @@
         {
           nixpkgs.overlays = [
             (final: prev: {
-              atmos = nixpkgs-atmos.legacyPackages.${prev.stdenv.hostPlatform.system}.atmos;
+              azure-cli = nixpkgs-azure-cli.legacyPackages.${prev.stdenv.hostPlatform.system}.azure-cli;
             })
           ];
 
