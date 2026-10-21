@@ -104,6 +104,7 @@ in
       inetutils
       k0sctl
       step-cli
+      trufflehog
 
       duPkgs.chainctl
       duPkgs.uds-cli
