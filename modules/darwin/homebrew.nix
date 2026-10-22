@@ -28,9 +28,7 @@
     };
     global.autoUpdate = false;
 
-    taps = [
-      "homebrew/bundle"
-    ];
+    taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [
       "ansible"
