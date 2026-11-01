@@ -110,7 +110,6 @@ in
 
       duPkgs.chainctl
       duPkgs.uds-cli
-      duPkgs.uds-image-factory
       duPkgs.zarf
     ];
 
