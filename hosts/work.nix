@@ -99,15 +99,18 @@ in
     home.packages = with pkgs; [
       aws-iam-authenticator
       eksctl
+      dnsmasq
       gitleaks
       gnupg
       inetutils
       k0sctl
       step-cli
       trufflehog
+      umoci
 
       duPkgs.chainctl
       duPkgs.uds-cli
+      duPkgs.uds-image-factory
       duPkgs.zarf
     ];
 
