@@ -76,9 +76,13 @@ in
   '';
 
   homebrew = {
+    # Keep Jamf Trust declared for cleanup, but skip App Store installs and upgrades.
+    onActivation.extraEnv.HOMEBREW_BUNDLE_MAS_SKIP = "1608041266";
     masApps = {
       "Azure VPN Client" = 1553936137;
+      "Jamf Trust" = 1608041266;
       "Windows App" = 1295203466;
+      "Yubico Authenticator" = 1497506650;
     };
     brews = [
       "chainloop-cli"
