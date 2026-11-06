@@ -42,6 +42,7 @@
       "claude-code"
       "font-fira-code-nerd-font"
       "ghostty"
+      "macpacker"
       "openlogi"
     ];
 
