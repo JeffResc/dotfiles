@@ -98,6 +98,12 @@ nix flake update   # update ALL inputs, including pinned Homebrew taps
 nix fmt            # format nix files (nixfmt-rfc-style)
 ```
 
+## Dependency Updates and CI
+
+Install the [Renovate GitHub App](https://github.com/apps/renovate) on this repository to enable `renovate.json`. Renovate schedules updates for early Monday in the New York time zone, including weekly flake lock maintenance. The `nixpkgs-azure-cli` input remains pinned because of the Fabric compatibility issue noted in `flake.nix`. The custom Net Info package version and hash are maintained manually.
+
+GitHub Actions evaluates the flake and builds the personal configuration for pull requests and pushes to `main`. PRs receive a personal closure diff as a workflow artifact. Trusted runs also build the work configuration, add its closure diff to the artifact, and post both diffs in a public PR comment. The work build uses the private Backblaze B2 Nix cache, and its diff is also stored at `reports/pr-<number>/<head-sha>.txt` in the cache bucket. Fork PRs cannot access the secrets required for the work build. The diffs cover Nix closures, not Homebrew or Mac App Store installations. Builds do not activate the configuration or test machine-specific activation scripts.
+
 ## 1Password Integration
 
 Sensitive configs are fetched at activation time via the `op` CLI (`modules/home/secrets.nix`):
