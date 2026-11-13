@@ -24,23 +24,15 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31
 
-      - name: Cache Nix store
-        uses: nix-community/cache-nix-action@v7
-        with:
-          primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('head/**/*.nix', 'head/flake.lock', 'head/configs/**') }}
-          restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
-
       - name: Check flake
         working-directory: head
         run: nix flake check --no-build --no-update-lock-file
 
-      - name: Build configurations
+      - name: Build personal configuration
         working-directory: head
         run: |
-          for host in personal work; do
-            nix build --no-link --print-out-paths --no-update-lock-file \
-              ".#darwinConfigurations.$host.system" > "$RUNNER_TEMP/head-$host"
-          done
+          nix build --no-link --print-out-paths --no-update-lock-file \
+            .#darwinConfigurations.personal.system > "$RUNNER_TEMP/head-personal"
 
       - name: Check out base revision
         if: github.event_name == 'pull_request'
@@ -50,20 +42,70 @@ jobs:
           path: base
           persist-credentials: false
 
-      - name: Compare closures
+      - name: Compare personal closures
         if: github.event_name == 'pull_request'
         working-directory: base
         run: |
-          for host in personal work; do
-            base=$(nix build --no-link --print-out-paths --no-update-lock-file \
-              ".#darwinConfigurations.$host.system")
-            head=$(<"$RUNNER_TEMP/head-$host")
-            {
-              printf '## %s\n\n```text\n' "$host"
-              nix store diff-closures "$base" "$head"
-              printf '\n```\n\n'
-            } >> "$RUNNER_TEMP/closure-diff.md"
-          done
+          base=$(nix build --no-link --print-out-paths --no-update-lock-file \
+            .#darwinConfigurations.personal.system)
+          head=$(<"$RUNNER_TEMP/head-personal")
+          {
+            printf '## personal\n\n```text\n'
+            nix store diff-closures "$base" "$head"
+            printf '\n```\n\n'
+          } > "$RUNNER_TEMP/closure-diff.md"
+
+      - name: Configure private cache credentials
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          B2_KEY_ID: ${{ secrets.B2_KEY_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+          CACHE_SIGNING_KEY: ${{ secrets.NIX_CACHE_SIGNING_KEY }}
+        run: |
+          umask 077
+          mkdir -p "$RUNNER_TEMP/b2"
+          printf '[default]\naws_access_key_id = %s\naws_secret_access_key = %s\n' \
+            "$B2_KEY_ID" "$B2_APPLICATION_KEY" > "$RUNNER_TEMP/b2/credentials"
+          printf '%s\n' "$CACHE_SIGNING_KEY" > "$RUNNER_TEMP/b2/signing-key"
+          sudo mkdir -p /var/root/.aws
+          sudo cp "$RUNNER_TEMP/b2/credentials" /var/root/.aws/credentials
+          sudo chmod 600 /var/root/.aws/credentials
+
+      - name: Build work configuration and save private report
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          NIX_PACKAGES_TOKEN: ${{ secrets.NIX_PACKAGES_GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        shell: bash
+        run: |
+          export AWS_SHARED_CREDENTIALS_FILE="$RUNNER_TEMP/b2/credentials"
+          export NIX_CONFIG="access-tokens = github.com=$NIX_PACKAGES_TOKEN"
+          cache='s3://jeffresc-dotfiles-nix-cache?endpoint=s3.us-east-005.backblazeb2.com&region=us-east-005'
+          public_key=$(<head/.github/nix-cache.pub)
+          log="$RUNNER_TEMP/b2/work.log"
+          report="$RUNNER_TEMP/b2/work-diff.md"
+          build() {
+            nix build --no-link --print-out-paths --no-update-lock-file \
+              --extra-substituters "$cache" --extra-trusted-public-keys "$public_key" \
+              "$1#darwinConfigurations.work.system"
+          }
+          if ! head_path=$(build ./head 2> "$log"); then
+            echo 'Work configuration build failed. Detailed output is not published.' >&2
+            exit 1
+          fi
+          if [ -n "$PR_NUMBER" ]; then
+            if ! base_path=$(build ./base 2>> "$log"); then
+              echo 'Base work configuration build failed. Detailed output is not published.' >&2
+              exit 1
+            fi
+            nix store diff-closures "$base_path" "$head_path" > "$report" 2>> "$log"
+            aws --endpoint-url https://s3.us-east-005.backblazeb2.com \
+              --region us-east-005 s3 cp "$report" \
+              "s3://jeffresc-dotfiles-nix-cache/reports/pr-$PR_NUMBER/$HEAD_SHA.txt" > /dev/null
+          fi
+          nix copy --to "$cache&secret-key=$RUNNER_TEMP/b2/signing-key" \
+            "$head_path" >> "$log" 2>&1
 
       - name: Save closure diff
         if: github.event_name == 'pull_request'
