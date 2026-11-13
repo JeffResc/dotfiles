@@ -1,0 +1,111 @@
+---
+name: Nix
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 120
+    steps:
+      - name: Check out proposed changes
+        uses: actions/checkout@v6
+        with:
+          path: head
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Cache Nix store
+        uses: nix-community/cache-nix-action@v7
+        with:
+          primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('head/**/*.nix', 'head/flake.lock', 'head/configs/**') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
+
+      - name: Check flake
+        working-directory: head
+        run: nix flake check --no-build --no-update-lock-file
+
+      - name: Build configurations
+        working-directory: head
+        run: |
+          for host in personal work; do
+            nix build --no-link --print-out-paths --no-update-lock-file \
+              ".#darwinConfigurations.$host.system" > "$RUNNER_TEMP/head-$host"
+          done
+
+      - name: Check out base revision
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+
+      - name: Compare closures
+        if: github.event_name == 'pull_request'
+        working-directory: base
+        run: |
+          for host in personal work; do
+            base=$(nix build --no-link --print-out-paths --no-update-lock-file \
+              ".#darwinConfigurations.$host.system")
+            head=$(<"$RUNNER_TEMP/head-$host")
+            {
+              printf '## %s\n\n```text\n' "$host"
+              nix store diff-closures "$base" "$head"
+              printf '\n```\n\n'
+            } >> "$RUNNER_TEMP/closure-diff.md"
+          done
+
+      - name: Save closure diff
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: closure-diff
+          path: ${{ runner.temp }}/closure-diff.md
+          if-no-files-found: error
+
+  comment:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pull-requests: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: closure-diff
+      - name: Update closure diff comment
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- nix-closure-diff -->';
+            const diff = fs.readFileSync('closure-diff.md', 'utf8');
+            const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const limit = 60000;
+            const report = diff.length > limit
+              ? `Closure diff is too large for a comment. Download the complete report from the [workflow run](${run}).`
+              : diff;
+            const body = `${marker}\n# Nix closure diff\n\nBase: ${context.payload.pull_request.base.sha}\nHead: ${context.payload.pull_request.head.sha} (tested as the merge commit)\n\n${report}`;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo, issue_number, per_page: 100
+            });
+            const existing = comments.find(comment =>
+              comment.user.login === 'github-actions[bot]' && comment.body.includes(marker)
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({ ...context.repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ ...context.repo, issue_number, body });
+            }

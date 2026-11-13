@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "schedule:weekly"],
+  "timezone": "America/New_York",
+  "nix": { "enabled": true },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["* 0-3 * * 1"]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["nix"],
+      "matchDepNames": ["nixpkgs-azure-cli"],
+      "enabled": false
+    }
+  ]
+}
