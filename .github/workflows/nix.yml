@@ -49,10 +49,14 @@ jobs:
           base=$(nix build --no-link --print-out-paths --no-update-lock-file \
             .#darwinConfigurations.personal.system)
           head=$(<"$RUNNER_TEMP/head-personal")
+          diff=$(nix store diff-closures "$base" "$head")
           {
-            printf '## personal\n\n```text\n'
-            nix store diff-closures "$base" "$head"
-            printf '\n```\n\n'
+            printf '## personal\n\n'
+            if [ -n "$diff" ]; then
+              printf '%s\n%s\n%s\n\n' '```text' "$diff" '```'
+            else
+              printf 'No closure changes.\n\n'
+            fi
           } > "$RUNNER_TEMP/closure-diff.md"
 
       - name: Configure private cache credentials
@@ -100,6 +104,14 @@ jobs:
               exit 1
             fi
             nix store diff-closures "$base_path" "$head_path" > "$report" 2>> "$log"
+            {
+              printf '## work\n\n'
+              if [ -s "$report" ]; then
+                printf '%s\n%s\n%s\n\n' '```text' "$(<"$report")" '```'
+              else
+                printf 'No closure changes.\n\n'
+              fi
+            } >> "$RUNNER_TEMP/closure-diff.md"
             aws --endpoint-url https://s3.us-east-005.backblazeb2.com \
               --region us-east-005 s3 cp "$report" \
               "s3://jeffresc-dotfiles-nix-cache/reports/pr-$PR_NUMBER/$HEAD_SHA.txt" > /dev/null
