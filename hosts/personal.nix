@@ -22,15 +22,13 @@
       "betterdisplay"
       "caldigit-docking-utility"
       "claude"
-      "codex"
+      "claude-code"
       "coolterm"
       "elgato-stream-deck"
-      "gcloud-cli"
       "google-chrome"
       "ha-menu"
       "helium-browser"
       "lm-studio"
-      "mitmproxy"
       "mullvad-vpn"
       "notion"
       "obs"
@@ -44,7 +42,6 @@
       "raspberry-pi-imager"
       "raycast"
       "rustdesk"
-      "session-manager-plugin"
       "slack"
       "spotify"
       "steam"
@@ -81,6 +78,7 @@
       dfu-util
       dnsutils
       gnutar
+      google-cloud-sdk
       hubble
       iperf3
       k8sgpt
@@ -89,6 +87,8 @@
       kubeseal
       libpq
       meson
+      mitmproxy
+      ncdu
       nmap
       ollama
       openocd

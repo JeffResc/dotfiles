@@ -43,6 +43,7 @@
         [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
         source "$HOME/.azure-select.sh"
 
+        export OP_BIOMETRIC_UNLOCK_ENABLED=true
         alias op_account='export OP_ACCOUNT=$(op account ls --format=json | jq -r ".[0].account_uuid")'
 
         nh-bump() {

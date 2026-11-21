@@ -1,4 +1,5 @@
 { config
+, pkgs
 , homebrew-core
 , homebrew-cask
 , homebrew-bundle
@@ -19,6 +20,8 @@
     };
   };
 
+  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
+
   homebrew = {
     enable = true;
     onActivation = {
@@ -31,7 +34,6 @@
     taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [
-      "ansible"
       "mas"
       "pinentry-mac"
     ];
@@ -39,8 +41,6 @@
     casks = [
       "1password-cli"
       "bentobox"
-      "claude-code"
-      "font-fira-code-nerd-font"
       "ghostty"
       "macpacker"
       "openlogi"

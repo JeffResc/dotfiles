@@ -7,7 +7,6 @@ let
 
     { path = "/Applications/BetterDisplay.app"; id = 185; name = "BetterDisplay"; entity = "policy"; }
     { path = "/Applications/ChatGPT.app"; id = 88; name = "ChatGPT"; entity = "app-installer"; }
-    { path = "/Applications/Claude.app"; id = 139; name = "Claude Desktop"; entity = "app-installer"; }
     { path = "/Applications/draw.io.app"; id = 54; name = "draw.io"; entity = "app-installer"; }
     { path = "/Applications/Elgato Stream Deck.app"; id = 134; name = "Elgato Stream Deck"; entity = "app-installer"; }
     { path = "/Applications/Gather.app"; id = 348; name = "Gather"; entity = "policy"; }
@@ -88,14 +87,11 @@ in
       "chainloop-cli"
       "hashicorp/tap/packer"
       "lima-additional-guestagents"
-      "opa"
       "opensc"
       "terramaid"
     ];
     casks = [
-      "codex"
       "font-teko"
-      "session-manager-plugin"
     ];
   };
 
@@ -108,6 +104,8 @@ in
       gnupg
       inetutils
       k0sctl
+      ncdu
+      open-policy-agent
       step-cli
       trufflehog
       umoci

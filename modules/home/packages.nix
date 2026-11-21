@@ -1,8 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    ansible
     apko
     atmos
+    codex
     dive
     docker-client
     docker-compose
@@ -13,6 +15,7 @@
     ipmitool
     melange
     mtr
+    opencode
     openssh
     p7zip
     pre-commit
@@ -51,6 +54,7 @@
     oras
     go-mockery
     skopeo
+    ssm-session-manager-plugin
     go-tools
     stern
     terraform-docs

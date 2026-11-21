@@ -21,7 +21,14 @@
       url = "github:defenseunicorns-labs/nix-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+      inputs.brew-src.follows = "brew-src";
+    };
+    brew-src = {
+      url = "github:Homebrew/brew/7.0.15";
+      flake = false;
+    };
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
@@ -46,6 +53,15 @@
       ./modules/darwin
       home-manager.darwinModules.home-manager
       nix-homebrew.darwinModules.nix-homebrew
+      {
+        # nix-homebrew otherwise labels the override with its own locked version.
+        nix-homebrew.package = let
+          version = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.brew-src.original.ref;
+        in inputs.brew-src // {
+          name = "brew-${version}";
+          inherit version;
+        };
+      }
     ];
     mkDarwin = { class, username, userEmail, signingKey }: nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
